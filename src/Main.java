@@ -1,8 +1,6 @@
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-public class HashMap1 {
+public class Main {
     public static void test1() {
         HashMap<String, String> map = new HashMap<>();
         map.put("USA", "Washington, D.C");
@@ -204,7 +202,7 @@ public class HashMap1 {
         System.out.println("Map contains p2: " + map.containsKey(p2));
         System.out.println("Map content: " + map);
     }
-    public static void test_optional(){
+    public static void test_optional() {
         // Tao cac doi tuong Optional
         Optional<String> optionalValue = Optional.of("Hello, World!");
         Optional<String> emptyOptional = Optional.empty();
@@ -218,19 +216,60 @@ public class HashMap1 {
         System.out.println("Value or Defailt: " + value);
 
         // Gia tri thay the tu Supplier
-        String generatedValue = emptyOptional.orElseGet(()->"Generated default value");
+        String generatedValue = emptyOptional.orElseGet(() -> "Generated default value");
         System.out.println("Generated value: " + generatedValue);
 
         // Gia tri tu Optional neu co, hoac nem ngoai le neu khong co
         try {
-            String result = emptyOptional.orElseThrow(()->new IllegalArgumentException("Value not present"));
-        }
-        catch (Exception e){
+            String result = emptyOptional.orElseThrow(() -> new IllegalArgumentException("Value not present"));
+        } catch (Exception e) {
             System.out.println("Caught exception: " + e.getMessage());
         }
     }
+
+    public static <T> void printArray(T[] array){
+        for (T element : array){
+            System.out.print(element + " ");
+        }
+        System.out.println("");
+    }
+
+    // Generic
+    public static void generic1(){
+        // Tao box cho String
+        Box<String> stringBox = new Box();
+        stringBox.setContent("Hello Generics");
+        System.out.println("String content: " + stringBox.getContent());
+
+        // Tao box cho Integer
+        Box<Integer> integerBox = new Box<>();
+        integerBox.setContent(123);
+        System.out.println("Integer content: " + stringBox.getContent());
+
+        // Goi phuong thuc Generic
+        Integer[] intArray = {1, 2, 3, 4};
+        String[]  stringArray = {"A", "B", "C"};
+        printArray(intArray);
+        printArray(stringArray);
+
+        // Tao danh sach cho so nguyen
+        List<Integer> integerList = new ArrayList<>();
+        integerList.add(1);
+        integerList.add(2);
+        integerList.add(3);
+
+        // In danh sach
+        for (Integer item : integerList){
+            System.out.println(item);
+        }
+
+        Pair<String, Integer> pair = new OrderedPair<>("Age", 23);
+        System.out.println("Key: " + pair.getKey() + ", value: " + pair.getValue());
+    }
     public static void main(String[] args) {
-        test_optional();
+        generic1();
+        int[] a = {1, 2, 3, 4};
+        System.out.println(3/6);
     }
 
 }

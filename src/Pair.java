@@ -1,2 +1,4 @@
-package PACKAGE_NAME;public interface Pair {
+public interface Pair <K, V>{
+    K getKey();
+    V getValue();
 }
